@@ -65,16 +65,18 @@ function yes() {
 
         <img id="slide" class="slide" src="photo1.jpg">
 
-        <audio id="music" autoplay>
+        <br><br>
+
+        <audio id="music" controls>
             <source src="music.mp3" type="audio/mpeg">
         </audio>
     `;
 
-    let music = document.getElementById("music");
+    const music = document.getElementById("music");
 
-    music.play().catch(function() {
-        console.log("เบราว์เซอร์บล็อก autoplay");
-    });
+    // เริ่มเพลงทันทีหลังจากกด "เป็น"
+    music.currentTime = 0;
+    music.play();
 
     let photos = [
         "photo1.jpg",
