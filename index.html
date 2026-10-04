@@ -72,11 +72,11 @@ function yes() {
         </audio>
     `;
 
-    const music = document.getElementById("music");
+    let music = document.getElementById("music");
 
-    // เริ่มเพลงทันทีหลังจากกด "เป็น"
-    music.currentTime = 0;
-    music.play();
+    music.play().catch(function(error) {
+        console.log("Autoplay ถูกบล็อก");
+    });
 
     let photos = [
         "photo1.jpg",
@@ -105,14 +105,21 @@ function no() {
     document.getElementById("page").innerHTML = `
         <h2>กดผิดป่าวว</h2>
 
-        <button onclick="back()">ย้อนกลับ</button>
+        <button onclick="home()">ย้อนกลับ</button>
     `;
 
 }
 
 
-function back() {
-    location.reload();
+function home() {
+
+    document.getElementById("page").innerHTML = `
+        <h2>เป็นแฟนกันมั้ย</h2>
+
+        <button onclick="yes()">เป็น</button>
+        <button onclick="no()">ไม่เป็น</button>
+    `;
+
 }
 
 </script>
