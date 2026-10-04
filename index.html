@@ -65,12 +65,16 @@ function yes() {
 
         <img id="slide" class="slide" src="photo1.jpg">
 
-        <br><br>
-
-        <audio controls autoplay>
+        <audio id="music" autoplay>
             <source src="music.mp3" type="audio/mpeg">
         </audio>
     `;
+
+    let music = document.getElementById("music");
+
+    music.play().catch(function() {
+        console.log("เบราว์เซอร์บล็อก autoplay");
+    });
 
     let photos = [
         "photo1.jpg",
