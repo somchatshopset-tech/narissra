@@ -9,6 +9,7 @@
 <style>
 body {
     margin: 0;
+    min-height: 100vh;
     background-image: url("20261005_050113_0000.png");
     background-size: cover;
     background-position: center;
@@ -19,6 +20,10 @@ body {
 
 .box {
     padding: 100px 20px;
+}
+
+h2 {
+    margin-bottom: 30px;
 }
 
 button {
@@ -54,21 +59,23 @@ button {
 <script>
 
 function yes() {
+
     document.getElementById("page").innerHTML = `
         <h2>เป็นแฟนกันแล้วนะ</h2>
 
-        <img id="slide" class="slide" src="photo1.jpg">
+        <img id="slide" class="slide" src="photo1.png">
     `;
 
     let photos = [
-    "photo1.png",
-    "photo2.png",
-    "photo3.png"
-];
+        "photo1.png",
+        "photo2.png",
+        "photo3.png"
+    ];
 
     let i = 0;
 
     setInterval(function() {
+
         i++;
 
         if (i >= photos.length) {
@@ -80,12 +87,17 @@ function yes() {
     }, 2500);
 }
 
+
 function no() {
+
     document.getElementById("page").innerHTML = `
         <h2>กดผิดป่าวว</h2>
+
         <button onclick="back()">ย้อนกลับ</button>
     `;
+
 }
+
 
 function back() {
     location.reload();
