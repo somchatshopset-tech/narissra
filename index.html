@@ -4,14 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ถึงนริศรา</title>
+<title>เป็นแฟนกันมั้ย</title>
 
 <style>
 body {
     margin: 0;
     background-image: url("20261005_050113_0000.png");
-background-size: cover;
-background-position: center;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     font-family: Arial, sans-serif;
     text-align: center;
 }
@@ -28,6 +29,14 @@ button {
     border-radius: 8px;
     font-size: 16px;
 }
+
+.slide {
+    width: 90%;
+    max-width: 400px;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 12px;
+}
 </style>
 </head>
 
@@ -35,8 +44,7 @@ button {
 
 <div class="box" id="page">
 
-    <h2>ถึงนริศรา</h2>
-    <h3>เป็นแฟนกันมั้ย</h3>
+    <h2>เป็นแฟนกันมั้ย</h2>
 
     <button onclick="yes()">เป็น</button>
     <button onclick="no()">ไม่เป็น</button>
@@ -48,12 +56,28 @@ button {
 function yes() {
     document.getElementById("page").innerHTML = `
         <h2>เป็นแฟนกันแล้วนะ</h2>
-        <img src="photo.jpg" width="90%">
-        <br><br>
-        <audio controls autoplay>
-            <source src="music.mp3" type="audio/mpeg">
-        </audio>
+
+        <img id="slide" class="slide" src="photo1.jpg">
     `;
+
+    let photos = [
+        "photo1.jpg",
+        "photo2.jpg",
+        "photo3.jpg"
+    ];
+
+    let i = 0;
+
+    setInterval(function() {
+        i++;
+
+        if (i >= photos.length) {
+            i = 0;
+        }
+
+        document.getElementById("slide").src = photos[i];
+
+    }, 2500);
 }
 
 function no() {
