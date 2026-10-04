@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ถึงนริศรา</title>
+
+<style>
+body {
+    margin: 0;
+    background: #f5f5f5;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.box {
+    padding: 100px 20px;
+}
+
+button {
+    padding: 12px 30px;
+    margin: 10px;
+    border: 1px solid #333;
+    background: white;
+    border-radius: 8px;
+    font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box" id="page">
+
+    <h2>ถึงนริศรา</h2>
+    <h3>เป็นแฟนกันมั้ย</h3>
+
+    <button onclick="yes()">เป็น</button>
+    <button onclick="no()">ไม่เป็น</button>
+
+</div>
+
+<script>
+
+function yes() {
+    document.getElementById("page").innerHTML = `
+        <h2>เป็นแฟนกันแล้วนะ</h2>
+        <img src="photo.jpg" width="90%">
+        <br><br>
+        <audio controls autoplay>
+            <source src="music.mp3" type="audio/mpeg">
+        </audio>
+    `;
+}
+
+function no() {
+    document.getElementById("page").innerHTML = `
+        <h2>กดผิดป่าวว</h2>
+        <button onclick="back()">ย้อนกลับ</button>
+    `;
+}
+
+function back() {
+    location.reload();
+}
+
+</script>
+
+</body>
+</html>
