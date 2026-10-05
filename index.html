@@ -60,30 +60,27 @@ button {
 
 function yes() {
 
-    document.getElementById("page").innerHTML = `
-        <h2>3 ปีที่รอคอย</h2>
-        <img id="slide" class="slide" src="photo1.jpg">
+    document.getElementById("page").innerHTML =
+    '<h2>3 ปีที่รอคอย</h2>' +
+    '<img id="slide" class="slide" src="photo1.jpg">' +
+    '<br><br>' +
+    '<audio id="music" controls>' +
+    '<source src="music.mp3" type="audio/mpeg">' +
+    '</audio>';
 
-        <br><br>
+    var music = document.getElementById("music");
 
-        <audio id="music" controls>
-            <source src="music.mp3" type="audio/mpeg">
-        </audio>
-    `;
-
-    let music = document.getElementById("music");
-
-    music.play().catch(function(error) {
-        console.log("Autoplay ถูกบล็อก");
+    music.play().catch(function() {
+        console.log("กดเล่นเพลงเองได้");
     });
 
-    let photos = [
+    var photos = [
         "photo1.jpg",
         "photo2.jpg",
         "photo3.jpg"
     ];
 
-    let i = 0;
+    var i = 0;
 
     setInterval(function() {
 
@@ -98,26 +95,20 @@ function yes() {
     }, 2500);
 }
 
-
 function no() {
 
-    document.getElementById("page").innerHTML = `
-        <h2>กดผิดป่าวว</h2>
-
-        <button onclick="home()">ย้อนกลับ</button>
-    `;
+    document.getElementById("page").innerHTML =
+    '<h2>กดผิดป่าวว</h2>' +
+    '<button onclick="home()">ย้อนกลับ</button>';
 
 }
 
-
 function home() {
 
-    document.getElementById("page").innerHTML = `
-        <h2>เป็นแฟนกันมั้ย</h2>
-
-        <button onclick="yes()">เป็น</button>
-        <button onclick="no()">ไม่เป็น</button>
-    `;
+    document.getElementById("page").innerHTML =
+    '<h2>เป็นแฟนกันมั้ย</h2>' +
+    '<button onclick="yes()">เป็น</button>' +
+    '<button onclick="no()">ไม่เป็น</button>';
 
 }
 
