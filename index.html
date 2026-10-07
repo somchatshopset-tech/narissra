@@ -43,6 +43,33 @@ button {
     object-fit: cover;
     border-radius: 12px;
 }
+
+/* พลุเท่านั้น */
+.firework {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    box-shadow:
+        0 0 6px white,
+        0 0 12px white;
+    animation: firework 1.2s ease-out forwards;
+}
+
+@keyframes firework {
+    from {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translate(var(--x), var(--y));
+        opacity: 0;
+    }
+}
 </style>
 </head>
 
@@ -60,6 +87,9 @@ button {
 <script>
 
 function yes() {
+
+    /* พลุ */
+    createFireworks();
 
     document.getElementById("page").innerHTML =
     '<h2>3 ปีที่รอคอย</h2>' +
@@ -96,6 +126,57 @@ function yes() {
     }, 2500);
 }
 
+
+/* สร้างพลุ */
+function createFireworks() {
+
+    for (let burst = 0; burst < 3; burst++) {
+
+        setTimeout(function() {
+
+            let centerX =
+                20 + Math.random() * (window.innerWidth - 40);
+
+            let centerY =
+                100 + Math.random() * 300;
+
+            for (let i = 0; i < 30; i++) {
+
+                let spark = document.createElement("div");
+
+                spark.className = "firework";
+
+                spark.style.left = centerX + "px";
+                spark.style.top = centerY + "px";
+
+                let angle =
+                    (Math.PI * 2 * i) / 30;
+
+                let distance =
+                    50 + Math.random() * 100;
+
+                spark.style.setProperty(
+                    "--x",
+                    Math.cos(angle) * distance + "px"
+                );
+
+                spark.style.setProperty(
+                    "--y",
+                    Math.sin(angle) * distance + "px"
+                );
+
+                document.body.appendChild(spark);
+
+                setTimeout(function() {
+                    spark.remove();
+                }, 1200);
+            }
+
+        }, burst * 400);
+    }
+}
+
+
 function no() {
 
     document.getElementById("page").innerHTML =
@@ -103,6 +184,7 @@ function no() {
     '<button onclick="home()">ย้อนกลับ</button>';
 
 }
+
 
 function home() {
 
