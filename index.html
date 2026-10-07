@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ของดีLovebet888.com</title>
+<title>Lovebet888.com</title>
 
 <style>
 body {
@@ -16,6 +16,7 @@ body {
     background-attachment: fixed;
     font-family: Arial, sans-serif;
     text-align: center;
+    overflow-x: hidden;
 }
 
 .box {
@@ -39,9 +40,40 @@ button {
     width: 90%;
     max-width: 500px;
     height: auto;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
     border-radius: 12px;
+}
+
+/* พลุ */
+.firework {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.spark {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    animation: explode 1.2s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--x), var(--y));
+        opacity: 0;
+    }
 }
 </style>
 </head>
@@ -61,6 +93,9 @@ button {
 
 function yes() {
 
+    // แสดงพลุ
+    fireworks();
+
     document.getElementById("page").innerHTML =
     '<h2>3 ปีที่รอคอย</h2>' +
     '<img id="slide" class="slide" src="photo1.jpg">' +
@@ -69,12 +104,14 @@ function yes() {
     '<source src="music.mp3" type="audio/mpeg">' +
     '</audio>';
 
+    // เปิดเพลงทันที
     var music = document.getElementById("music");
 
     music.play().catch(function() {
         console.log("กดเล่นเพลงเองได้");
     });
 
+    // รูปสไลด์
     var photos = [
         "photo1.jpg",
         "photo2.jpg",
@@ -96,24 +133,26 @@ function yes() {
     }, 2500);
 }
 
-function no() {
 
-    document.getElementById("page").innerHTML =
-    '<h2>กดผิดป่าวว</h2>' +
-    '<button onclick="home()">ย้อนกลับ</button>';
+// ฟังก์ชันสร้างพลุ
+function fireworks() {
 
-}
+    for (var f = 0; f < 8; f++) {
 
-function home() {
+        setTimeout(function() {
 
-    document.getElementById("page").innerHTML =
-    '<h2>เป็นแฟนกันมั้ย</h2>' +
-    '<button onclick="yes()">เป็น</button>' +
-    '<button onclick="no()">ไม่เป็น</button>';
+            var firework = document.createElement("div");
+            firework.className = "firework";
 
-}
+            firework.style.left =
+                (20 + Math.random() * 60) + "vw";
 
-</script>
+            firework.style.top =
+                (15 + Math.random() * 45) + "vh";
 
-</body>
-</html>
+            document.body.appendChild(firework);
+
+            // สร้างประกายพลุ
+            for (var i = 0; i < 35; i++) {
+
+                var spark = document.createElement("div
