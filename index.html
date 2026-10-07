@@ -87,16 +87,11 @@ button {
 ========================= */
 
 .birthday-video {
-
     width: 90%;
     max-width: 450px;
-
     border-radius: 15px;
-
     display: block;
-
     margin: 20px auto;
-
 }
 
 
@@ -105,11 +100,8 @@ button {
 ========================= */
 
 .birthday-text {
-
     opacity: 0;
-
-    animation:
-        birthdayText 1.5s ease-out 0.5s forwards;
+    animation: birthdayText 1.5s ease-out 0.5s forwards;
 }
 
 @keyframes birthdayText {
@@ -121,20 +113,21 @@ button {
 }
 
 .birthday-message {
-
     line-height: 1.8;
-
     font-size: 16px;
-
 }
 
 
-/* ปุ่มเปิดวิดีโอ */
+/* =========================
+   ปุ่ม
+========================= */
 
 .video-button {
-
     margin-top: 20px;
+}
 
+.next-button {
+    margin-top: 25px;
 }
 
 </style>
@@ -316,7 +309,7 @@ function birthday() {
 
     document.getElementById("page").innerHTML =
 
-    '<h2 class="birthday-text">Happy Birthday</h2>' +
+    '<h2 class="birthday-text">Happy Birthday ล่วงหน้า 2 วัน</h2>' +
 
     '<button class="video-button" onclick="startBirthdayVideo()">' +
     'เปิดวิดีโอ' +
@@ -347,7 +340,7 @@ function birthday() {
 
 
 /* =========================
-   เปิดวิดีโอพร้อมเสียง
+   เปิดวิดีโอ
 ========================= */
 
 function startBirthdayVideo() {
@@ -356,7 +349,7 @@ function startBirthdayVideo() {
 
     '<video id="birthdayVideo" class="birthday-video" controls playsinline>' +
 
-    '<source src="birthday.mp4" type="video/mp4">' +
+    '<source src="birthday_web.mp4" type="video/mp4">' +
 
     'เบราว์เซอร์ของคุณไม่รองรับวิดีโอ' +
 
@@ -372,7 +365,7 @@ function startBirthdayVideo() {
 
     video.play().catch(function() {
 
-        alert("ถ้ายังไม่มีเสียง ให้กดปุ่มเล่นบนวิดีโออีกครั้ง");
+        console.log("กดเล่นวิดีโออีกครั้ง");
 
     });
 
