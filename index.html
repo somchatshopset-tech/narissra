@@ -93,23 +93,9 @@ button {
 
     border-radius: 15px;
 
-    opacity: 0;
+    display: block;
 
-    transform: translateY(80px);
-
-    animation:
-        birthdayVideo 1.5s ease-out forwards;
-}
-
-@keyframes birthdayVideo {
-
-    to {
-
-        opacity: 1;
-
-        transform: translateY(0);
-
-    }
+    margin: 20px auto;
 
 }
 
@@ -123,15 +109,13 @@ button {
     opacity: 0;
 
     animation:
-        birthdayText 1.5s ease-out 1s forwards;
+        birthdayText 1.5s ease-out 0.5s forwards;
 }
 
 @keyframes birthdayText {
 
     to {
-
         opacity: 1;
-
     }
 
 }
@@ -145,11 +129,11 @@ button {
 }
 
 
-/* ปุ่มไปต่อ */
+/* ปุ่มเปิดวิดีโอ */
 
-.next-button {
+.video-button {
 
-    margin-top: 25px;
+    margin-top: 20px;
 
 }
 
@@ -182,12 +166,8 @@ button {
 
 function yes() {
 
-    /* เริ่มพลุ */
-
     createFireworks();
 
-
-    /* เปลี่ยนหน้า */
 
     document.getElementById("page").innerHTML =
 
@@ -208,8 +188,6 @@ function yes() {
     '<button class="next-button" onclick="birthday()">ไปต่อ →</button>';
 
 
-    /* เล่นเพลง */
-
     var music =
         document.getElementById("music");
 
@@ -221,14 +199,10 @@ function yes() {
     });
 
 
-    /* รูปสไลด์ */
-
     var photos = [
 
         "photo1.jpg",
-
         "photo2.jpg",
-
         "photo3.jpg"
 
     ];
@@ -241,17 +215,12 @@ function yes() {
 
         i++;
 
-
         if (i >= photos.length) {
-
             i = 0;
-
         }
-
 
         document.getElementById("slide").src =
             photos[i];
-
 
     }, 2500);
 
@@ -265,18 +234,14 @@ function yes() {
 
 function createFireworks() {
 
-
     for (let burst = 0; burst < 10; burst++) {
 
-
         setTimeout(function() {
-
 
             let centerX =
                 20 +
                 Math.random() *
                 (window.innerWidth - 40);
-
 
             let centerY =
                 80 +
@@ -286,18 +251,14 @@ function createFireworks() {
 
             for (let i = 0; i < 45; i++) {
 
-
                 let spark =
                     document.createElement("div");
-
 
                 spark.className =
                     "firework";
 
-
                 spark.style.left =
                     centerX + "px";
-
 
                 spark.style.top =
                     centerY + "px";
@@ -313,24 +274,18 @@ function createFireworks() {
 
 
                 spark.style.setProperty(
-
                     "--x",
-
                     Math.cos(angle) *
                     distance +
                     "px"
-
                 );
 
 
                 spark.style.setProperty(
-
                     "--y",
-
                     Math.sin(angle) *
                     distance +
                     "px"
-
                 );
 
 
@@ -343,9 +298,7 @@ function createFireworks() {
 
                 }, 1600);
 
-
             }
-
 
         }, burst * 450);
 
@@ -365,13 +318,11 @@ function birthday() {
 
     '<h2 class="birthday-text">Happy Birthday</h2>' +
 
-    '<video id="birthdayVideo" class="birthday-video" autoplay playsinline controls>' +
+    '<button class="video-button" onclick="startBirthdayVideo()">' +
+    'เปิดวิดีโอ' +
+    '</button>' +
 
-    '<source src="birthday.mp4" type="video/mp4">' +
-
-    'เบราว์เซอร์ของคุณไม่รองรับวิดีโอ' +
-
-    '</video>' +
+    '<div id="videoArea"></div>' +
 
     '<div class="birthday-text birthday-message">' +
 
@@ -391,14 +342,37 @@ function birthday() {
 
     '</div>';
 
-    
-    /* พยายามเล่นวิดีโอพร้อมเสียง */
+}
 
-    var video = document.getElementById("birthdayVideo");
+
+
+/* =========================
+   เปิดวิดีโอพร้อมเสียง
+========================= */
+
+function startBirthdayVideo() {
+
+    document.getElementById("videoArea").innerHTML =
+
+    '<video id="birthdayVideo" class="birthday-video" controls playsinline>' +
+
+    '<source src="birthday.mp4" type="video/mp4">' +
+
+    'เบราว์เซอร์ของคุณไม่รองรับวิดีโอ' +
+
+    '</video>';
+
+
+    var video =
+        document.getElementById("birthdayVideo");
+
+
+    video.volume = 1;
+
 
     video.play().catch(function() {
 
-        console.log("เบราว์เซอร์บล็อก autoplay");
+        alert("ถ้ายังไม่มีเสียง ให้กดปุ่มเล่นบนวิดีโออีกครั้ง");
 
     });
 
@@ -411,7 +385,6 @@ function birthday() {
 ========================= */
 
 function no() {
-
 
     document.getElementById("page").innerHTML =
 
@@ -428,7 +401,6 @@ function no() {
 ========================= */
 
 function home() {
-
 
     document.getElementById("page").innerHTML =
 
