@@ -44,7 +44,7 @@ button {
     border-radius: 12px;
 }
 
-/* พลุเท่านั้น */
+/* พลุ */
 .firework {
     position: fixed;
     width: 4px;
@@ -56,7 +56,7 @@ button {
     box-shadow:
         0 0 6px white,
         0 0 12px white;
-    animation: firework 1.2s ease-out forwards;
+    animation: firework 1.6s ease-out forwards;
 }
 
 @keyframes firework {
@@ -88,7 +88,6 @@ button {
 
 function yes() {
 
-    /* พลุ */
     createFireworks();
 
     document.getElementById("page").innerHTML =
@@ -127,10 +126,9 @@ function yes() {
 }
 
 
-/* สร้างพลุ */
 function createFireworks() {
 
-    for (let burst = 0; burst < 3; burst++) {
+    for (let burst = 0; burst < 10; burst++) {
 
         setTimeout(function() {
 
@@ -138,9 +136,9 @@ function createFireworks() {
                 20 + Math.random() * (window.innerWidth - 40);
 
             let centerY =
-                100 + Math.random() * 300;
+                80 + Math.random() * (window.innerHeight * 0.5);
 
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 45; i++) {
 
                 let spark = document.createElement("div");
 
@@ -150,10 +148,10 @@ function createFireworks() {
                 spark.style.top = centerY + "px";
 
                 let angle =
-                    (Math.PI * 2 * i) / 30;
+                    (Math.PI * 2 * i) / 45;
 
                 let distance =
-                    50 + Math.random() * 100;
+                    60 + Math.random() * 130;
 
                 spark.style.setProperty(
                     "--x",
@@ -169,10 +167,10 @@ function createFireworks() {
 
                 setTimeout(function() {
                     spark.remove();
-                }, 1200);
+                }, 1600);
             }
 
-        }, burst * 400);
+        }, burst * 450);
     }
 }
 
