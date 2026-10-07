@@ -1,495 +1,119 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Lovebet888.com</title>
 
 <style>
-
-/* =========================
-   หน้าเว็บ
-   ========================= */
-
 body {
-
     margin: 0;
-
     min-height: 100vh;
-
     background-image: url("20261005_050113_0000.png");
-
     background-size: cover;
-
     background-position: center;
-
     background-attachment: fixed;
-
     font-family: Arial, sans-serif;
-
     text-align: center;
-
-    overflow-x: hidden;
 }
-
 
 .box {
-
     padding: 100px 20px;
-
-    position: relative;
-
-    z-index: 2;
 }
-
 
 h2 {
-
     margin-bottom: 30px;
-
 }
-
 
 button {
-
     padding: 12px 30px;
-
     margin: 10px;
-
     border: 1px solid #333;
-
     background: white;
-
     border-radius: 8px;
-
     font-size: 16px;
-
-    position: relative;
-
-    z-index: 10;
-
 }
-
 
 .slide {
-
     width: 90%;
-
     max-width: 500px;
-
     height: auto;
-
     aspect-ratio: 4 / 3;
-
     object-fit: cover;
-
     border-radius: 12px;
-
 }
-
-
-/* =========================
-   พื้นที่พลุ
-   ========================= */
-
-#fireworks {
-
-    position: fixed;
-
-    left: 0;
-
-    top: 0;
-
-    width: 100vw;
-
-    height: 100vh;
-
-    pointer-events: none;
-
-    z-index: 1;
-
-    overflow: hidden;
-
-}
-
-
-/* จุดระเบิด */
-
-.firework {
-
-    position: absolute;
-
-    width: 6px;
-
-    height: 6px;
-
-    border-radius: 50%;
-
-}
-
-
-/* ประกายพลุ */
-
-.spark {
-
-    position: absolute;
-
-    width: 6px;
-
-    height: 6px;
-
-    border-radius: 50%;
-
-    pointer-events: none;
-
-    animation: explode 1.4s ease-out forwards;
-
-}
-
-
-@keyframes explode {
-
-    0% {
-
-        transform:
-            translate(0, 0)
-            scale(1);
-
-        opacity: 1;
-
-    }
-
-    100% {
-
-        transform:
-            translate(var(--x), var(--y))
-            scale(0.1);
-
-        opacity: 0;
-
-    }
-
-}
-
 </style>
-
 </head>
 
-
 <body>
-
-
-<!-- พื้นที่สำหรับพลุ -->
-
-<div id="fireworks"></div>
-
-
-<!-- หน้าเว็บ -->
 
 <div class="box" id="page">
 
     <h2>เป็นแฟนกันมั้ย</h2>
 
     <button onclick="yes()">เป็น</button>
-
     <button onclick="no()">ไม่เป็น</button>
 
 </div>
 
-
-
 <script>
-
-
-/* =========================
-   กด "เป็น"
-   ========================= */
 
 function yes() {
 
-
-    // ยิงพลุ
-
-    fireworks();
-
-
-    // เปลี่ยนหน้า
-
     document.getElementById("page").innerHTML =
+    '<h2>3 ปีที่รอคอย</h2>' +
+    '<img id="slide" class="slide" src="photo1.jpg">' +
+    '<br><br>' +
+    '<audio id="music" controls>' +
+    '<source src="music.mp3" type="audio/mpeg">' +
+    '</audio>';
 
-        '<h2>3 ปีที่รอคอย</h2>' +
-
-        '<img id="slide" class="slide" src="photo1.jpg">' +
-
-        '<br><br>' +
-
-        '<audio id="music" controls>' +
-
-        '<source src="music.mp3" type="audio/mpeg">' +
-
-        '</audio>';
-
-
-    // เล่นเพลง
-
-    var music =
-        document.getElementById("music");
-
+    var music = document.getElementById("music");
 
     music.play().catch(function() {
-
         console.log("กดเล่นเพลงเองได้");
-
     });
 
-
-    // รูปทั้งหมด
-
     var photos = [
-
         "photo1.jpg",
-
         "photo2.jpg",
-
         "photo3.jpg"
-
     ];
 
-
     var i = 0;
-
-
-    // เปลี่ยนรูปทุก 2.5 วินาที
 
     setInterval(function() {
 
         i++;
 
         if (i >= photos.length) {
-
             i = 0;
-
         }
 
-
-        var slide =
-            document.getElementById("slide");
-
-
-        if (slide) {
-
-            slide.src = photos[i];
-
-        }
+        document.getElementById("slide").src = photos[i];
 
     }, 2500);
-
 }
-
-
-
-/* =========================
-   ระบบพลุ
-   ========================= */
-
-function fireworks() {
-
-
-    var container =
-        document.getElementById("fireworks");
-
-
-    // ล้างพลุเก่าก่อน
-
-    container.innerHTML = "";
-
-
-    // สร้างพลุ 10 ชุด
-
-    for (let f = 0; f < 10; f++) {
-
-
-        setTimeout(function() {
-
-
-            // จุดศูนย์กลางพลุ
-
-            var firework =
-                document.createElement("div");
-
-
-            firework.className =
-                "firework";
-
-
-            // ตำแหน่งสุ่ม
-
-            firework.style.left =
-                (10 + Math.random() * 80) + "vw";
-
-
-            firework.style.top =
-                (10 + Math.random() * 55) + "vh";
-
-
-            container.appendChild(
-                firework
-            );
-
-
-            // สีพลุ
-
-            var colors = [
-
-                "#ff1744",
-
-                "#00e5ff",
-
-                "#ffea00",
-
-                "#76ff03",
-
-                "#ff00ff",
-
-                "#ff9100",
-
-                "#ffffff"
-
-            ];
-
-
-            var color =
-                colors[
-                    Math.floor(
-                        Math.random() *
-                        colors.length
-                    )
-                ];
-
-
-            // สร้างประกาย 45 อัน
-
-            for (let i = 0; i < 45; i++) {
-
-
-                var spark =
-                    document.createElement("div");
-
-
-                spark.className =
-                    "spark";
-
-
-                spark.style.background =
-                    color;
-
-
-                spark.style.boxShadow =
-                    "0 0 8px " +
-                    color +
-                    ", 0 0 18px " +
-                    color;
-
-
-                // ทิศทาง
-
-                var angle =
-                    Math.random() *
-                    Math.PI * 2;
-
-
-                // ระยะ
-
-                var distance =
-                    70 +
-                    Math.random() * 140;
-
-
-                spark.style.setProperty(
-
-                    "--x",
-
-                    Math.cos(angle) *
-                    distance +
-                    "px"
-
-                );
-
-
-                spark.style.setProperty(
-
-                    "--y",
-
-                    Math.sin(angle) *
-                    distance +
-                    "px"
-
-                );
-
-
-                firework.appendChild(
-                    spark
-                );
-
-            }
-
-
-            // ลบพลุ
-
-            setTimeout(function() {
-
-                firework.remove();
-
-            }, 1500);
-
-
-        }, f * 300);
-
-    }
-
-}
-
-
-
-/* =========================
-   กด "ไม่เป็น"
-   ========================= */
 
 function no() {
 
-
     document.getElementById("page").innerHTML =
-
-        '<h2>กดผิดป่าวว</h2>' +
-
-        '<button onclick="home()">ย้อนกลับ</button>';
+    '<h2>กดผิดป่าวว</h2>' +
+    '<button onclick="home()">ย้อนกลับ</button>';
 
 }
 
-
-
-/* =========================
-   กลับหน้าหลัก
-   ========================= */
-
 function home() {
 
-
     document.getElementById("page").innerHTML =
-
-        '<h2>เป็นแฟนกันมั้ย</h2>' +
-
-        '<button onclick="yes()">เป็น</button>' +
-
-        '<button onclick="no()">ไม่เป็น</button>';
+    '<h2>เป็นแฟนกันมั้ย</h2>' +
+    '<button onclick="yes()">เป็น</button>' +
+    '<button onclick="no()">ไม่เป็น</button>';
 
 }
 
 </script>
-
 
 </body>
 </html>
