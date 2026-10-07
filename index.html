@@ -7,6 +7,7 @@
 <title>Lovebet888.com</title>
 
 <style>
+
 body {
     margin: 0;
     min-height: 100vh;
@@ -33,6 +34,7 @@ button {
     background: white;
     border-radius: 8px;
     font-size: 16px;
+    cursor: pointer;
 }
 
 .slide {
@@ -44,7 +46,11 @@ button {
     border-radius: 12px;
 }
 
-/* พลุ */
+
+/* =========================
+   พลุ
+========================= */
+
 .firework {
     position: fixed;
     width: 4px;
@@ -53,13 +59,16 @@ button {
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
+
     box-shadow:
         0 0 6px white,
         0 0 12px white;
+
     animation: firework 1.6s ease-out forwards;
 }
 
 @keyframes firework {
+
     from {
         transform: translate(0, 0);
         opacity: 1;
@@ -69,131 +78,363 @@ button {
         transform: translate(var(--x), var(--y));
         opacity: 0;
     }
+
 }
+
+
+/* =========================
+   วิดีโอวันเกิด
+========================= */
+
+.birthday-video {
+
+    width: 90%;
+    max-width: 450px;
+
+    border-radius: 15px;
+
+    opacity: 0;
+
+    transform: translateY(80px);
+
+    animation:
+        birthdayVideo 1.5s ease-out forwards;
+}
+
+@keyframes birthdayVideo {
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* =========================
+   ข้อความวันเกิด
+========================= */
+
+.birthday-text {
+
+    opacity: 0;
+
+    animation:
+        birthdayText 1.5s ease-out 1s forwards;
+}
+
+@keyframes birthdayText {
+
+    to {
+
+        opacity: 1;
+
+    }
+
+}
+
+.birthday-message {
+
+    line-height: 1.8;
+
+    font-size: 16px;
+
+}
+
+
+/* ปุ่มไปต่อ */
+
+.next-button {
+
+    margin-top: 25px;
+
+}
+
 </style>
+
 </head>
 
+
 <body>
+
 
 <div class="box" id="page">
 
     <h2>เป็นแฟนกันมั้ย</h2>
 
     <button onclick="yes()">เป็น</button>
+
     <button onclick="no()">ไม่เป็น</button>
 
 </div>
 
+
+
 <script>
+
+
+/* =========================
+   ปุ่ม "เป็น"
+========================= */
 
 function yes() {
 
+    /* เริ่มพลุ */
+
     createFireworks();
 
-    document.getElementById("page").innerHTML =
-    '<h2>3 ปีที่รอคอย</h2>' +
-    '<img id="slide" class="slide" src="photo1.jpg">' +
-    '<br><br>' +
-    '<audio id="music" controls>' +
-    '<source src="music.mp3" type="audio/mpeg">' +
-    '</audio>';
 
-    var music = document.getElementById("music");
+    /* เปลี่ยนหน้า */
+
+    document.getElementById("page").innerHTML =
+
+    '<h2>3 ปีที่รอคอย</h2>' +
+
+    '<img id="slide" class="slide" src="photo1.jpg">' +
+
+    '<br><br>' +
+
+    '<audio id="music" controls>' +
+
+    '<source src="music.mp3" type="audio/mpeg">' +
+
+    '</audio>' +
+
+    '<br>' +
+
+    '<button class="next-button" onclick="birthday()">ไปต่อ →</button>';
+
+
+    /* เล่นเพลง */
+
+    var music =
+        document.getElementById("music");
+
 
     music.play().catch(function() {
+
         console.log("กดเล่นเพลงเองได้");
+
     });
 
+
+    /* รูปสไลด์ */
+
     var photos = [
+
         "photo1.jpg",
+
         "photo2.jpg",
+
         "photo3.jpg"
+
     ];
 
+
     var i = 0;
+
 
     setInterval(function() {
 
         i++;
 
+
         if (i >= photos.length) {
+
             i = 0;
+
         }
 
-        document.getElementById("slide").src = photos[i];
+
+        document.getElementById("slide").src =
+            photos[i];
+
 
     }, 2500);
+
 }
 
 
+
+/* =========================
+   สร้างพลุ
+========================= */
+
 function createFireworks() {
+
 
     for (let burst = 0; burst < 10; burst++) {
 
+
         setTimeout(function() {
 
+
             let centerX =
-                20 + Math.random() * (window.innerWidth - 40);
+                20 +
+                Math.random() *
+                (window.innerWidth - 40);
+
 
             let centerY =
-                80 + Math.random() * (window.innerHeight * 0.5);
+                80 +
+                Math.random() *
+                (window.innerHeight * 0.5);
+
 
             for (let i = 0; i < 45; i++) {
 
-                let spark = document.createElement("div");
 
-                spark.className = "firework";
+                let spark =
+                    document.createElement("div");
 
-                spark.style.left = centerX + "px";
-                spark.style.top = centerY + "px";
+
+                spark.className =
+                    "firework";
+
+
+                spark.style.left =
+                    centerX + "px";
+
+
+                spark.style.top =
+                    centerY + "px";
+
 
                 let angle =
                     (Math.PI * 2 * i) / 45;
 
+
                 let distance =
-                    60 + Math.random() * 130;
+                    60 +
+                    Math.random() * 130;
+
 
                 spark.style.setProperty(
+
                     "--x",
-                    Math.cos(angle) * distance + "px"
+
+                    Math.cos(angle) *
+                    distance +
+                    "px"
+
                 );
 
+
                 spark.style.setProperty(
+
                     "--y",
-                    Math.sin(angle) * distance + "px"
+
+                    Math.sin(angle) *
+                    distance +
+                    "px"
+
                 );
+
 
                 document.body.appendChild(spark);
 
+
                 setTimeout(function() {
+
                     spark.remove();
+
                 }, 1600);
+
+
             }
 
+
         }, burst * 450);
+
     }
+
 }
 
 
-function no() {
+
+/* =========================
+   หน้า Happy Birthday
+========================= */
+
+function birthday() {
+
 
     document.getElementById("page").innerHTML =
+
+
+    '<h2 class="birthday-text">Happy Birthday</h2>' +
+
+
+    '<video class="birthday-video" autoplay muted playsinline controls>' +
+
+    '<source src="birthday.mp4" type="video/mp4">' +
+
+    'เบราว์เซอร์ของคุณไม่รองรับวิดีโอ' +
+
+    '</video>' +
+
+
+    '<div class="birthday-text birthday-message">' +
+
+    '<h3>สุขสันต์วันเกิดครับพี่</h3>' +
+
+    '<p>มีความสุขมากๆ ยิ้มเยอะๆ</p>' +
+
+    '<p>ผมจะตั้งใจหาเงินพาพี่ไปกินของดีๆ</p>' +
+
+    '<p>อยากให้อยู่กับผมไปนานๆ ทุกๆ ปี</p>' +
+
+    '<p>เว็บนี้ผมตั้งใจทำให้พี่มาก</p>' +
+
+    '<p>อาจจะไม่ได้ดีขนาดนั้น</p>' +
+
+    '<p><strong>รัก</strong></p>' +
+
+    '</div>';
+
+}
+
+
+
+/* =========================
+   ปุ่ม "ไม่เป็น"
+========================= */
+
+function no() {
+
+
+    document.getElementById("page").innerHTML =
+
     '<h2>กดผิดป่าวว</h2>' +
+
     '<button onclick="home()">ย้อนกลับ</button>';
 
 }
 
 
+
+/* =========================
+   กลับหน้าแรก
+========================= */
+
 function home() {
 
+
     document.getElementById("page").innerHTML =
+
     '<h2>เป็นแฟนกันมั้ย</h2>' +
+
     '<button onclick="yes()">เป็น</button>' +
+
     '<button onclick="no()">ไม่เป็น</button>';
 
 }
 
 </script>
+
 
 </body>
 </html>
